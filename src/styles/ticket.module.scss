@@ -1,0 +1,64 @@
+
+
+.ticket_card{
+	display: flex;
+	flex-direction: column;
+	background-color: #E8EBF2;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 20px;
+
+	.flight_info{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.price{
+			color: #4E148C;
+			font-weight: 700;
+			size: 32px;
+			line-height: 39px;
+			min-width: 135px;
+			min-height: 40px;
+		}
+
+		img{
+			height: 40px;
+			width: 118px;
+			
+		}
+	}
+
+	.flight_details{
+		display: flex;
+		justify-content: space-between;
+		gap: 35px;
+	}
+
+	.title{
+		color: #858AE3;
+		font-weight: 500;
+		font-size: 15px;
+		
+	}
+
+	.description{
+		color: #4E148C;
+	}
+				
+			
+	
+	
+
+	
+
+	
+
+	.duration{
+
+	}
+
+	.connections{
+		
+	}
+}
