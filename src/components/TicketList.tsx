@@ -3,18 +3,13 @@ import TicketCard from './TicketCard';
 import { Ticket } from '../types/types';
 import { fetchTickets } from '../api/fakeApi';
 import css from '../styles/ticket-list.module.scss';
+import { RootState } from '../store/store';
+import { useSelector } from 'react-redux';
 
 const TicketList: React.FC = () => {
-	const [tickets, setTickets] = useState<Ticket[]>([]);
+	const { tickets } = useSelector((state: RootState) => state.tickets);
 	const [activeTab, setActiveTab] = useState<'cheapest' | 'fastest' | 'optimal'>('cheapest');
 	const [visibleCount, setVisibleCount] = useState<number>(3);
-	useEffect(() => {
-		const getTickets = async () => {
-			const data = await fetchTickets();
-			setTickets(data);
-		};
-		getTickets()
-	}, []);
 
 	
 	const filteredTickets = () => {
