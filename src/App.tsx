@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadTickets } from "./store/ticketsSlice";
 import { RootState, AppDispatch } from "./store/store";
-import TicketCard from "./components/TicketCard";
+
 import Header from './components/Header';
 import TicketList from './components/TicketList';
 import './styles/App.scss';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-	const { tickets, loading, error } = useSelector((state: RootState) => state.tickets);
+	const { loading, error } = useSelector((state: RootState) => state.tickets);
 
   useEffect(() => {
     dispatch(loadTickets());

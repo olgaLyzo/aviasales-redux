@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import TicketCard from './TicketCard';
 import { Ticket } from '../types/types';
 import { fetchTickets } from '../api/fakeApi';
+import css from '../styles/ticket-list.module.scss';
 
 const TicketList: React.FC = () => {
 	const [tickets, setTickets] = useState<Ticket[]>([]);
 	const [activeTab, setActiveTab] = useState<'cheapest' | 'fastest' | 'optimal'>('cheapest');
 	const [visibleCount, setVisibleCount] = useState<number>(3);
-	
 	useEffect(() => {
 		const getTickets = async () => {
 			const data = await fetchTickets();
@@ -16,6 +16,7 @@ const TicketList: React.FC = () => {
 		getTickets()
 	}, []);
 
+	
 	const filteredTickets = () => {
 		let sortedTickets = [...tickets];
 
@@ -35,48 +36,30 @@ const TicketList: React.FC = () => {
 		setVisibleCount((prevCount)=> prevCount + 3);
 	}
 	return (
-		<div>
-			<div style = {{display: 'flex', marginBottom: '20px'}}>
+		<div className={css.container}>
+			<div className={css.filters_panel}>
 				<button
-					style = {{
-						flex: 1,
-						padding: '10px',
-						backgroundColor: activeTab === 'cheapest' ? '#ddd' : '#fff',
-						border: '1px solid #ccc',
-						cursor: 'pointer',
+					className={`${css.ticket_type_tab} ${activeTab === 'cheapest' ? css.active_tab : ''}`}
+					onClick = {()=> {
+						setActiveTab('cheapest');
+						setVisibleCount(3);
 					}}
-						onClick = {()=> {
-							setActiveTab('cheapest');
-							setVisibleCount(3);
-						}}
 				>Cheapest Ticket
 				</button>
 				<button
-					style = {{
-						flex: 1,
-						padding: '10px',
-						backgroundColor: activeTab === 'fastest' ? '#ddd' : '#fff',
-						border: '1px solid #ccc',
-						cursor: 'pointer',
+					className={`${css.ticket_type_tab} ${activeTab === 'fastest' ? css.active_tab : ''}`}
+					onClick = {()=> {
+						setActiveTab('fastest');
+						setVisibleCount(3);
 					}}
-						onClick = {()=> {
-							setActiveTab('fastest');
-							setVisibleCount(3);
-						}}
 				>Fastest Ticket
 				</button>
 				<button
-					style = {{
-						flex: 1,
-						padding: '10px',
-						backgroundColor: activeTab === 'optimal' ? '#ddd' : '#fff',
-						border: '1px solid #ccc',
-						cursor: 'pointer',
+					className={`${css.ticket_type_tab} ${activeTab === 'optimal' ? css.active_tab : ''}`}
+					onClick = {()=> {
+						setActiveTab('optimal');
+						setVisibleCount(3);
 					}}
-						onClick = {()=> {
-							setActiveTab('optimal');
-							setVisibleCount(3);
-						}}
 				>Optimal Ticket
 				</button>
 			</div>
@@ -87,21 +70,12 @@ const TicketList: React.FC = () => {
 			</div>
 
 			{visibleCount < tickets.length && (
-				<div style={{texAlign: 'center', marginTop: '20px'}}>
 					<button
-						style={{
-							padding: '10px 20px',
-							backgroundColor: '#007bff',
-							color: '#fff',
-							border: 'none',
-							borderRadius: '5px',
-							cursor: 'pointer',
-						}}
+						className={css.btn_load_more}
 						onClick={loadMoreTickets}
 					>
 						Load more tickets
 					</button>
-				</div>
 			)}
 		</div>
 	);
