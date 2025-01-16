@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TicketCard from './TicketCard';
-import { Ticket } from '../types/types';
-import { fetchTickets } from '../api/fakeApi';
 import css from '../styles/ticket-list.module.scss';
-import { RootState } from '../store/store';
-import { useSelector } from 'react-redux';
+import { Ticket } from '../types/types';
 
-const TicketList: React.FC = () => {
-	const { tickets } = useSelector((state: RootState) => state.tickets);
+interface TicketListProps {
+  tickets: Ticket[];
+}
+const TicketList: React.FC<TicketListProps> = ({ tickets })=> {
 	const [activeTab, setActiveTab] = useState<'cheapest' | 'fastest' | 'optimal'>('cheapest');
 	const [visibleCount, setVisibleCount] = useState<number>(3);
 
@@ -32,7 +31,7 @@ const TicketList: React.FC = () => {
 	}
 	return (
 		<div className={css.container}>
-			<div className={css.filters_panel}>
+			<div className={css.ticket_types_panel}>
 				<button
 					className={`${css.ticket_type_tab} ${activeTab === 'cheapest' ? css.active_tab : ''}`}
 					onClick = {()=> {
@@ -58,6 +57,7 @@ const TicketList: React.FC = () => {
 				>Optimal Ticket
 				</button>
 			</div>
+			
 			<div>
 				{filteredTickets().map((ticket) => (
 					<TicketCard key={ticket.id} {...ticket} />
