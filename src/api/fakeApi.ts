@@ -36,7 +36,7 @@ export const fetchTickets = async (): Promise<Ticket[]> => {
 			id: 3,
 			from: "LCJ ",
 			to: "ALC",
-			company: "../../public/icons/s7airlines.svg",
+			company: "../../public/icons/S7airlines.svg",
 			price: 4000,
 			currency: "RUB",
 			time: {
@@ -51,7 +51,7 @@ export const fetchTickets = async (): Promise<Ticket[]> => {
 			id: 4,
 			from: "SVO",
 			to: "LED",
-			company: "../../public/icons/pobeda.svg",
+			company: "../../public/icons/Pobeda.svg",
 			price: 2000,
 			currency: "RUB",
 			time: {
@@ -66,7 +66,7 @@ export const fetchTickets = async (): Promise<Ticket[]> => {
 			id: 5,
 			from: "LCJ ",
 			to: "ALC",
-			company: "../../public/icons/redwings.svg",
+			company: "../../public/icons/Redwings.svg",
 			price: 3000,
 			currency: "RUB",
 			time: {

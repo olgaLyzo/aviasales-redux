@@ -1,12 +1,10 @@
 
-@import url('./main.scss');
 
-#root {
-  max-width: 1049px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-	line-height: 20px;
-}
+@import url('../styles/header.module.scss');
+@import url('../styles/ticket.module.scss');
+@import url('../styles/ticket-list.module.scss');
+@import url('../styles/filters.module.scss');
+
+
 
 

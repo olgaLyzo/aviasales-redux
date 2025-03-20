@@ -13,8 +13,9 @@ const App: React.FC = () => {
 	state.tickets);
 	const [filteredTickets, setFilteredTickets] = useState(tickets);
   const [selectedAirline, setSelectedAirline] = useState<string>('');
-  const [selectedConnections, setSelectedConnections] = useState<Set<number>>(new Set());
-
+  const [selectedConnections, setSelectedConnections] = useState<number[]>([]);
+	
+	
 
   useEffect(() => {
 		if (tickets.length === 0) {  
@@ -25,18 +26,33 @@ const App: React.FC = () => {
 	useEffect(() => {
     const filterTickets = () => {
       return tickets.filter(ticket =>
-        (selectedAirline ? ticket.company.includes(selectedAirline) : true) &&
-        (selectedConnections.size > 0 ? selectedConnections.has(ticket.connectionAmount || 0) : true)
+        (selectedAirline 
+					? ticket.company.includes(selectedAirline) 
+					: true) &&
+        (selectedConnections.length > 0 
+					? selectedConnections.includes(ticket.connectionAmount || 0) 
+					: true)
       );
     };
 
     setFilteredTickets(filterTickets);
   }, [tickets, selectedAirline, selectedConnections]);
 
-  const handleFilterChange = (airline: string, connections: Set<number>) => {
-    setSelectedAirline(airline);
-    setSelectedConnections(connections);
-  };
+	const handleAirlineChange = (airline: string) => {
+		setSelectedAirline(airline);
+	};
+
+	const handleConnectionChange = (connection: number) => {
+		if(selectedConnections.includes(connection)){
+			const filteredSelectedConnection = selectedConnections.filter((elem)=>elem !== connection)
+			setSelectedConnections(filteredSelectedConnection)
+		}else{
+			
+     const filteredSelectedConnection = Array.from(selectedConnections);
+		 filteredSelectedConnection.push(connection)
+		 setSelectedConnections(filteredSelectedConnection)
+		} 
+	}	
 
 	if(loading) return <p>Loading...</p>;
 	if(error) return <p>Error: {error}</p>
@@ -47,12 +63,16 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <Header />
-			<TicketList tickets={filteredTickets} />
 			<SearchFilter
         airlines={airlines}
         connectionsOptions={connectionOptions}
-        onFilterChange={handleFilterChange}
+				selectedAirline={selectedAirline}
+				selectedConnections={selectedConnections}
+				onAirlineChange={handleAirlineChange}
+				handleConnectionChange={handleConnectionChange}
     	/>
+			<TicketList tickets={filteredTickets} />
+			
     </div>
   );
 };
