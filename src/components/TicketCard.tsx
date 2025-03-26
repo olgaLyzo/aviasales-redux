@@ -8,7 +8,6 @@ const formatDuration = (minutes: number): string => {
 	return `${hours} h ${mins} min`;
 };
 const TicketCard: React.FC<Ticket> = ({ 
-	id,
 	from,
 	to,
 	company,
@@ -28,16 +27,16 @@ const TicketCard: React.FC<Ticket> = ({
 
 
 				<div className={css.flight_details}>
-					<div>
+					<div className={css.criteria}>
 						<h3 className={css.title}> {from} - {to} </h3>
 						<div className={css.description}>{time.startTime} - {time.endTime}</div>
 						<div className={css.description}>{date}</div>
 					</div>
-					<div>
+					<div className={css.criteria}>
 						<h3 className={css.title}>Duration</h3>
 						<div className={css.description}> {formatDuration(duration)}</div>
 					</div>
-					<div>
+					<div className={css.criteria}>
 						<h3 className={css.title}>Connections</h3>
 						<div className={css.description}> {" "}{
 							connectionAmount === null || connectionAmount === 0 

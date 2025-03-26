@@ -27,7 +27,7 @@ const SearchFilter: React.FC<{
 			<div className={css.search_panel}>
 
 				{/* Блок отражения результата выбора параметров */}
-				<div className={css.chosen_criteria}>
+				<div className={css.chosen_criteria_block}>
 					<div className={css.results_of_choice} id='title'>
 						<span>{isOpen && selectedAirline ? ` Авиакомпания: ${nameOfAirline},  `:`Любые авиабилеты, `}
 						</span>
@@ -37,10 +37,10 @@ const SearchFilter: React.FC<{
 						</span> 
 					</div>
 				{/* Кнопка развертывания параметров */}
-					<div className = {css.open_parameters_btn}>
+					<div className = {css.criteria_block}>
 						<span>Открыть настройки</span>
 						<div 
-							className={`${css.open_tabs_btn} ${isOpen ? css.active : ''}`}
+							className={`${css.open_criteria_btn} ${isOpen ? css.active : ''}`}
 							onClick={toggleMenu}>
 						</div>
 					</div> 
@@ -48,8 +48,7 @@ const SearchFilter: React.FC<{
 
 			{/* Списки фильтров */}
       {isOpen && (
-				<div 
-					className={css.filters_panel}>
+				<div className={css.filters_panel}>
 					<div className={css.filter}>
 						<h4>Choose Airline</h4>
 						{airlines.map((airline) => (

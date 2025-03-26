@@ -63,16 +63,17 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <Header />
-			<SearchFilter
-        airlines={airlines}
-        connectionsOptions={connectionOptions}
-				selectedAirline={selectedAirline}
-				selectedConnections={selectedConnections}
-				onAirlineChange={handleAirlineChange}
-				handleConnectionChange={handleConnectionChange}
-    	/>
-			<TicketList tickets={filteredTickets} />
-			
+			<div className="search_block">
+				<SearchFilter
+					airlines={airlines}
+					connectionsOptions={connectionOptions}
+					selectedAirline={selectedAirline}
+					selectedConnections={selectedConnections}
+					onAirlineChange={handleAirlineChange}
+					handleConnectionChange={handleConnectionChange}
+				/>
+				<TicketList tickets={filteredTickets} />
+			</div>
     </div>
   );
 };

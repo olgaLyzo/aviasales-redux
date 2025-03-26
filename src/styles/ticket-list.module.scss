@@ -1,5 +1,4 @@
 .container{
-
 	.ticket_types_panel{
 		display: flex; 
 		margin: 20px 0;		
@@ -26,14 +25,12 @@
 				border-top-right-radius : 8px;
 				border-bottom-right-radius : 8px;
 			}
-			
 		}
 	}
 
 	button{
 		flex: 1;
 		padding: 10px;
-		
 		cursor: pointer;
 		text-align: center;
 		background-color: #4E148C;
@@ -52,3 +49,10 @@
 		margin: 10px;
 	}
 }
+
+// @media (min-width: 1024px){
+// 	.container{
+// 		width: 55%;
+// 		margin:0 auto;
+// 	}
+// }

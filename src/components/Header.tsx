@@ -5,6 +5,7 @@ const Header = () => {
 	return(
 		<header className={css.header}>
 			<img src = '../public/icons/airplane.svg'/>
+			<h2>Поиск авиабилетов</h2>
 		</header>
 	)
 }

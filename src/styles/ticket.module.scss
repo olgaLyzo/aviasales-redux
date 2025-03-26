@@ -1,5 +1,3 @@
-
-
 .ticket_card{
 	display: flex;
 	flex-direction: column;
@@ -12,7 +10,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-
 		.price{
 			color: #4E148C;
 			font-weight: 700;
@@ -21,44 +18,28 @@
 			min-width: 135px;
 			min-height: 40px;
 		}
-
 		img{
 			height: 40px;
 			width: 118px;
-			
 		}
 	}
 
 	.flight_details{
 		display: flex;
 		justify-content: space-between;
-		gap: 35px;
-	}
-
-	.title{
-		color: #858AE3;
-		font-weight: 500;
-		font-size: 15px;
-		
-	}
-
-	.description{
-		color: #4E148C;
-	}
-				
-			
-	
-	
-
-	
-
-	
-
-	.duration{
-
-	}
-
-	.connections{
-		
+		.criteria{
+			display:flex;
+			flex-direction: column;
+			justify-content: left;
+			align-items: flex-start;
+			.title{
+				color: #858AE3;
+				font-weight: 500;
+				font-size: 15px;
+			}
+			.description{
+				color: #4E148C;
+			}
+		}
 	}
 }
