@@ -24,8 +24,6 @@ const TicketCard: React.FC<Ticket> = ({
 					<div className={css.price}>{price} {currency}</div>
 					<img src = {company}/>
 				</div>
-
-
 				<div className={css.flight_details}>
 					<div className={css.criteria}>
 						<h3 className={css.title}> {from} - {to} </h3>

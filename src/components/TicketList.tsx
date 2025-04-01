@@ -9,11 +9,9 @@ interface TicketListProps {
 const TicketList: React.FC<TicketListProps> = ({ tickets })=> {
 	const [activeTab, setActiveTab] = useState<'cheapest' | 'fastest' | 'optimal'>('cheapest');
 	const [visibleCount, setVisibleCount] = useState<number>(3);
-
 	
 	const filteredTickets = () => {
 		let sortedTickets = [...tickets];
-
 		if(activeTab === 'cheapest'){
 			sortedTickets = sortedTickets.sort((a, b) => a.price - b.price);
 		}
@@ -30,7 +28,7 @@ const TicketList: React.FC<TicketListProps> = ({ tickets })=> {
 		setVisibleCount((prevCount)=> prevCount + 3);
 	}
 	return (
-		<div className={css.container}>
+		<div className={css.ticket_list_wrapper}>
 			<div className={css.ticket_types_panel}>
 				<button
 					className={`${css.ticket_type_tab} ${activeTab === 'cheapest' ? css.active_tab : ''}`}
@@ -57,20 +55,19 @@ const TicketList: React.FC<TicketListProps> = ({ tickets })=> {
 				>Optimal Ticket
 				</button>
 			</div>
-			
 			<div>
 				{filteredTickets().map((ticket) => (
 					<TicketCard key={ticket.id} {...ticket} />
-				))}
+				))
+				}
 			</div>
-
 			{visibleCount < tickets.length && (
-					<button
-						className={css.btn_load_more}
-						onClick={loadMoreTickets}
-					>
-						Load more tickets
-					</button>
+				<button
+					className={css.btn_load_more}
+					onClick={loadMoreTickets}
+				>
+					Load more tickets
+				</button>
 			)}
 		</div>
 	);

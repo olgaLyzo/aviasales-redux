@@ -1,4 +1,8 @@
 .header{
+	display: flex;
+	justify-content: center;
+	min-width: 320px;
+	margin: 30px;
 	img{
 		width: 90px;
 		height: 90px;
@@ -9,9 +13,12 @@
 }
 @media(min-width: 1024px){
 	.header{
-		display: flex;
 		gap: 30px;
+		justify-content: flex-start;
 		align-items: center;
+		max-width: 800px;
+		margin: 0 auto;
+
 		h2{
 			display:block;
 			color: #4E148C;

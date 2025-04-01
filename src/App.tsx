@@ -5,6 +5,9 @@ import { RootState, AppDispatch } from "./store/store";
 import Header from './components/Header';
 import TicketList from './components/TicketList';
 import SearchFilter from './components/SearchFilter';
+import Criteria from './components/Criteria';
+import css from './styles/filters.module.scss';
+
 import './styles/App.scss';
 
 const App: React.FC = () => {
@@ -14,10 +17,8 @@ const App: React.FC = () => {
 	const [filteredTickets, setFilteredTickets] = useState(tickets);
   const [selectedAirline, setSelectedAirline] = useState<string>('');
   const [selectedConnections, setSelectedConnections] = useState<number[]>([]);
-	
-	
 
-  useEffect(() => {
+	useEffect(() => {
 		if (tickets.length === 0) {  
       dispatch(loadTickets());
     }
@@ -47,7 +48,6 @@ const App: React.FC = () => {
 			const filteredSelectedConnection = selectedConnections.filter((elem)=>elem !== connection)
 			setSelectedConnections(filteredSelectedConnection)
 		}else{
-			
      const filteredSelectedConnection = Array.from(selectedConnections);
 		 filteredSelectedConnection.push(connection)
 		 setSelectedConnections(filteredSelectedConnection)
@@ -57,22 +57,38 @@ const App: React.FC = () => {
 	if(loading) return <p>Loading...</p>;
 	if(error) return <p>Error: {error}</p>
 
-	const airlines = [...new Set(tickets.map(ticket => ticket.company))];
+	const airlines = tickets.map(ticket => ticket.company);
   const connectionOptions = [0, 1, 2];
 
-  return (
+	return (
     <div className="app">
       <Header />
-			<div className="search_block">
+			<div className={css.search_block}>
+				<div className={css.criteria_sidebar}>			
+					<Criteria
+						aviaCompanies={airlines}
+						connectionOptions={connectionOptions} 
+						selectedConnections={selectedConnections}
+						handleConnectionChange={handleConnectionChange}
+						onAirlineChange={handleAirlineChange}
+					/>
+				</div>
 				<SearchFilter
-					airlines={airlines}
-					connectionsOptions={connectionOptions}
 					selectedAirline={selectedAirline}
 					selectedConnections={selectedConnections}
-					onAirlineChange={handleAirlineChange}
-					handleConnectionChange={handleConnectionChange}
-				/>
-				<TicketList tickets={filteredTickets} />
+				>
+					<Criteria
+						aviaCompanies={airlines}
+						setSelectedAirline={setSelectedAirline}
+						connectionOptions={connectionOptions} 
+						selectedConnections={selectedConnections}
+						handleConnectionChange={handleConnectionChange}
+						onAirlineChange={handleAirlineChange}
+					/>
+				</SearchFilter>
+				<TicketList 
+					tickets={filteredTickets}
+					 />
 			</div>
     </div>
   );
