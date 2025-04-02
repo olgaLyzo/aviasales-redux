@@ -79,7 +79,6 @@ const App: React.FC = () => {
 				>
 					<Criteria
 						aviaCompanies={airlines}
-						setSelectedAirline={setSelectedAirline}
 						connectionOptions={connectionOptions} 
 						selectedConnections={selectedConnections}
 						handleConnectionChange={handleConnectionChange}

@@ -3,13 +3,11 @@ import css from '../styles/filters.module.scss';
 
 const Criteria: React.FC<{
 	aviaCompanies:[],
-	setSelectedAirline:(airline:string)=>void,
 	onAirlineChange:(airline:string)=>void,
 	connectionOptions:number[],
 	handleConnectionChange:(connection: number)=>void,
 	}> = ({
 		aviaCompanies,
-		setSelectedAirline,
 		onAirlineChange,
 		connectionOptions, 
 		handleConnectionChange,
@@ -26,7 +24,6 @@ const Criteria: React.FC<{
 						name="airline"
 						value="allAirlines"
 						onChange= {()=>
-							// setSelectedAirline("allAirlines")
 							window.location.reload()
 						}						
 					/>All airlines
